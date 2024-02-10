@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"main/load"
 	"net/http"
 )
 
@@ -134,6 +135,11 @@ func user(token string) (map[string]interface{}, error) {
 }
 
 func main() {
-	// utilisation des fonctions
-	fmt.Print(activeIntent("MTE5Nzk1NjI3MDc0NTk5MzMzOA.GHtiEe.mRu2I0X63tKtZ4md2wrEzy6dD7VWjTOHIjq4t0"))
+	config, err := load.Config()
+
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Print(activeIntent(config.BotToken))
 }
